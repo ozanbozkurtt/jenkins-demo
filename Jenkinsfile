@@ -16,7 +16,7 @@ node {
             checkout([$class: 'GitSCM', branches: [[name: "${dockerBranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: "${dockerProjectURL}"]]])
         }
         dir('configserver') {
-            sh("cp ../mytmp/main/${dockerProjectName} ./")
+            sh("cp ../mytmp/${dockerProjectName} ./")
         }
         fileOperations([folderDeleteOperation('mytmp')])
     }

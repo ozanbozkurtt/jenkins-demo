@@ -30,7 +30,7 @@ node {
     pom = readMavenPom file: 'pom.xml'
     VERSION = pom.version
     stage('Build & register') {
-         def dockerHome = tool 'myDocker'
+         def dockerHome = tool 'docker'
          env.PATH = "${dockerHome}/bin:${env.PATH}"
     
         dir('configserver') {

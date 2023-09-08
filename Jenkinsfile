@@ -28,7 +28,7 @@ node {
             sh "mv ${dockerProjectName} Dockerfile"
         }
     }
-    pom = readMavenPom file: 'configserver/pom.xml'
+    pom = readMavenPom file: 'pom.xml'
     VERSION = pom.version
     stage('Build & register') {
         dir('configserver') {

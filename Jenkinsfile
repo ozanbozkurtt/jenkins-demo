@@ -25,7 +25,6 @@ node {
         
             withMaven(options:[artifactsPublisher(disabled: true)], globalMavenSettingsConfig: 'aad79b66-506b-417a-a215-6754b562eb5e', maven: 'maven', mavenOpts: '-DskipTests=true') {
             sh "mvn clean verify sonar:sonar -Dsonar.projectKey=${sonarProjectKey} -Dsonar.host.url=${sonarHostUrl} -Dsonar.login=${sonarLoginToken}"}
-            sh "mv ${dockerProjectName} Dockerfile"
         
     }
     pom = readMavenPom file: 'pom.xml'

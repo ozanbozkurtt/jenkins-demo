@@ -11,12 +11,11 @@ node {
     sonarHostUrl = 'http://192.168.27.129:9000'
     stage('Get Dockerfile repository') {
         fileOperations([folderCreateOperation('mytmp')])
-        fileOperations([folderCreateOperation('configserver')])
         dir('mytmp') {
             checkout([$class: 'GitSCM', branches: [[name: "${dockerBranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: "${dockerProjectURL}"]]])
         }
             
-            sh("cp ../mytmp/${dockerProjectName} ../configserver")
+            sh("cp ../mytmp/${dockerProjectName} .")
         
         fileOperations([folderDeleteOperation('mytmp')])
     }

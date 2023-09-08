@@ -15,9 +15,9 @@ node {
         dir('mytmp') {
             checkout([$class: 'GitSCM', branches: [[name: "${dockerBranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: "${dockerProjectURL}"]]])
         }
-        dir('configserver') {
+        
             sh("cp ../mytmp/${dockerProjectName} ./")
-        }
+        
         fileOperations([folderDeleteOperation('mytmp')])
     }
     stage('Clone repository') {
@@ -32,7 +32,7 @@ node {
     stage('Build & register') {
          def dockerHome = tool 'docker'
          env.PATH = "${dockerHome}/bin:${env.PATH}"
-    
+            sh("cp ../mytmp/${dockerProjectName} .")
         
             docker.withRegistry('https://192.168.27.129:5000') {
                 def customImage = docker.build("${containerName}")

@@ -3,7 +3,7 @@ node {
     containerName = 'simple-java'
     latestTag = 'latest'
     branchName = 'main'
-    dockerProjectURL = 'https://github.com/ozanbozkurtt/dockerfiles-demo.git'
+    dockerProjectURL = 'https://github.com/ozanbozkurtt/docker-files-demo-with-maven.git'
     dockerBranchName = 'main'
     dockerProjectName = 'Dockerfile'
     sonarProjectKey = 'simple-java'

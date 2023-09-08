@@ -33,12 +33,12 @@ node {
          def dockerHome = tool 'docker'
          env.PATH = "${dockerHome}/bin:${env.PATH}"
     
-        dir('configserver') {
+        
             docker.withRegistry('https://192.168.27.129:5000') {
                 def customImage = docker.build("${containerName}")
                 customImage.push("${VERSION}")
                 customImage.push("${latestTag}")
-            }
+            
         }
     }
 }

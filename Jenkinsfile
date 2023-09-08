@@ -5,7 +5,7 @@ node {
     branchName = 'main'
     dockerProjectURL = 'https://github.com/ozanbozkurtt/dockerfiles-demo.git'
     dockerBranchName = 'main'
-    dockerProjectName = 'Jenkinsfile'
+    dockerProjectName = 'Dockerfile'
     sonarProjectKey = 'simple-java'
     sonarLoginToken = 'sqp_18edf432e534ae4652cf09a17c6bbca952ae901d'
     sonarHostUrl = 'http://192.168.27.129:9000'

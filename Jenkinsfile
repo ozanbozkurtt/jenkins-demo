@@ -31,8 +31,8 @@ node {
     VERSION = pom.version
     stage('Build & register') {
          def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-    }
+         env.PATH = "${dockerHome}/bin:${env.PATH}"
+    
         dir('configserver') {
             docker.withRegistry('https://192.168.27.129:5000') {
                 def customImage = docker.build("${containerName}")

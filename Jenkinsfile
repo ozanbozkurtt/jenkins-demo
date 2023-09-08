@@ -15,8 +15,8 @@ node {
         dir('mytmp') {
             checkout([$class: 'GitSCM', branches: [[name: "${dockerBranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: "${dockerProjectURL}"]]])
         }
-        
-            sh("cp ../mytmp/${dockerProjectName} ./")
+            
+            sh("cp ../mytmp/${dockerProjectName} ../configserver")
         
         fileOperations([folderDeleteOperation('mytmp')])
     }
@@ -25,14 +25,14 @@ node {
         
             withMaven(options:[artifactsPublisher(disabled: true)], globalMavenSettingsConfig: '30a69226-32ed-4962-9f5f-fd6b9096cb82', maven: 'maven', mavenOpts: '-DskipTests=true') {
             sh "mvn clean verify sonar:sonar -Dsonar.projectKey=${sonarProjectKey} -Dsonar.host.url=${sonarHostUrl} -Dsonar.login=${sonarLoginToken}"}
-        
+            
     }
     pom = readMavenPom file: 'pom.xml'
     VERSION = pom.version
     stage('Build & register') {
          def dockerHome = tool 'docker'
          env.PATH = "${dockerHome}/bin:${env.PATH}"
-            sh("cp ../mytmp/${dockerProjectName} .")
+            
         
             docker.withRegistry('https://192.168.27.129:5000') {
                 def customImage = docker.build("${containerName}")

@@ -23,7 +23,7 @@ node {
     stage('Clone repository') {
         checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: "${gitProjectURL}"]]])
         dir('configserver') {
-            withMaven(options:[artifactsPublisher(disabled: true)], maven: 'maven', mavenOpts: '-DskipTests=true') {
+            withMaven(options:[artifactsPublisher(disabled: true)], globalMavenSettingsConfig: 'f87a95d2-f213-4512-b8c6-83933e26ad37', maven: 'maven', mavenOpts: '-DskipTests=true') {
             sh "mvn clean verify sonar:sonar -Dsonar.projectKey=${sonarProjectKey} -Dsonar.host.url=${sonarHostUrl} -Dsonar.login=${sonarLoginToken}"}
             sh "mv ${dockerProjectName} Dockerfile"
         }

@@ -1,6 +1,6 @@
 node {
     gitProjectURL = 'https://github.com/ozanbozkurtt/simple-spring-boot.git'
-    containerName = 'simple-java'
+    containerName = 'simple-java-maven'
     latestTag = 'latest'
     branchName = 'main'
     dockerProjectURL = 'https://github.com/ozanbozkurtt/docker-files-demo-with-maven.git'
